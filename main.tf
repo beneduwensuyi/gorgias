@@ -1,3 +1,4 @@
+
 provider "aws" {
   profile = "default"
   region  = var.region
@@ -11,5 +12,5 @@ resource "aws_vpc" "My_VPC" {
 }
 resource "aws_instance" "east_example" {
   ami           = var.amis[var.region]
-  instance_type = "t2.xlarge"    # "t2.micro"
+  instance_type = "t2.xlarge"   
 }
