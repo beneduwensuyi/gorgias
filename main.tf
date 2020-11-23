@@ -1,10 +1,16 @@
-module "make_a_vm" {
-  source  = "app.terraform.io/beduwensuyi/make-a-vm/aws"
-  version = "1.0.1"
 
-  os = "ubuntu"
-  size = "t2.small "
-  tag_name = "AWSserver"
-  tag_owner = "beduwensuyi"
-  tag_ttl = 72
+provider "aws" {
+  profile = "default"
+  region  = var.region
+}
+# create the VPC
+resource "aws_vpc" "My_VPC" {
+  cidr_block = var.vpcCIDRblock
+    tags = {
+        Name = "My VPC"
+    }
+}
+resource "aws_instance" "east_example" {
+  ami           = var.amis[var.region]
+  instance_type = "t2.xlarge"   
 }
